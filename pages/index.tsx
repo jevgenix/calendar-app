@@ -44,9 +44,9 @@ const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
           {tasks.map((task) => {
             return (
               <ul key={task.id}>
-                <li>{task.task1}</li>
-                <li>{task.task2}</li>
-                <li>{task.task3}</li>
+                <li className={styles.task}>{task.task1}</li>
+                <li className={styles.task}>{task.task2}</li>
+                <li className={styles.task}>{task.task3}</li>
               </ul>
             );
           })}
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const res = await fetch(
     "https://raw.githubusercontent.com/vhjaho/calendar/main/calendar.json"
   );
-  //resultit tallennetaan arrayhyn
+  //resultit tallennetaan
   const { results }: GetSResults = await res.json();
 
   return {
