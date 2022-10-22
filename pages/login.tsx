@@ -1,5 +1,17 @@
-function LoginPage() {
-    return <h1>Welcome to the LogIn!</h1>
-}
+import Head from "next/head"
 
-export default LoginPage
+
+export default function LoginPage() {
+
+
+    return (
+        <div>
+            <Head>
+                <title>Login</title>
+            </Head>
+            <main>
+                <h1>Welcome to login page!</h1>
+            </main>
+        </div>
+    )
+}
