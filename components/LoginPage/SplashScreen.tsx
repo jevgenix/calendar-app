@@ -6,14 +6,17 @@ const SplashScreen = () => {
         <div className={styles.splashscreen}>
 
             <div className={styles.screen_content}>
-                <h1 className={styles.loginscreen_header}> Splash Screen!</h1>
-                <p className={styles.loginscreen_text}>Some text here</p>
 
-                <img className={styles.image1} src='/images/calendar.jpeg' />
-                <img className={styles.image2} src='/images/calendar.jpeg' />
-                {/* <img className={styles.image3} src='/images/calendar.jpeg' /> */}
+                <h1 className={styles.splashscreen_header}> ...try it now! </h1>
+                {/* <img className={styles.image1} src='/images/plan.jpeg' />
+
+                <img className={styles.image2} src='/images/coffee.jpeg' />
+                <img className={styles.image3} src='/images/break.jpeg' />
+                <img className={styles.image4} src='/images/calendar.png' /> */}
+
                 {/* <img src='/images/calendar.jpeg' /> */}
                 {/* <img src='/images/calendar.jpeg' /> */}
+                <img src='/images/lazy.png' />
 
             </div>
         </div>
