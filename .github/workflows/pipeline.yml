@@ -1,0 +1,32 @@
+name: Deployement pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize]
+
+jobs:
+  deployement_pipeline:
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: npm install
+        run: npm install
+
+      - name: deploy
+        id: deploy
+        uses: akhileshns/heroku-deploy@v3.12.12 # Deploy to heroku action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "actions-pokedex-app"
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
+          #healthcheck: "https://actions-pokedex-app.herokuapp.com/health"
+          #checkstring: "ok"
+          #rollbackonhealthcheckfailed: true
