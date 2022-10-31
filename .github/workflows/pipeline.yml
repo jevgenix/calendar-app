@@ -37,7 +37,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "next-calendar-app"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          healthcheck: "https://next-calendar-app.herokuapp.com//health"
+          healthcheck: "https://next-calendar-app.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
 
@@ -60,7 +60,7 @@ jobs:
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:
-    needs: deployment_pipeline
+    needs: deployement_pipeline
     if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
     runs-on: ubuntu-20.04
     steps:
