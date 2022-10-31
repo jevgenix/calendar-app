@@ -22,6 +22,11 @@ jobs:
       - name: npm install
         run: npm install --legacy-peer-deps
 
+      - name: Lint test
+        run: npm run lint
+        env:
+          CI: true
+
       - name: deploy
         id: deploy
         uses: akhileshns/heroku-deploy@v3.12.12 # Deploy to heroku action
@@ -29,6 +34,6 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "next-calendar-app"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          #healthcheck: "https://actions-pokedex-app.herokuapp.com/health"
-          #checkstring: "ok"
-          #rollbackonhealthcheckfailed: true
+          healthcheck: "https://actions-pokedex-app.herokuapp.com/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
