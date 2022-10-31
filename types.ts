@@ -1,10 +1,18 @@
 export interface GetSResults {
-    results: Schedule[];
+  Events: Schedule[];
 }
 
 export interface Schedule {
-    id: number;
-    task1: string;
-    task2: string;
-    task3: string;
+  id: number;
+  summary: String;
+  description: String;
+  start: {
+    date: String;
+    dateTime: String;
+    timeZone: String;
+  };
+  end: {
+    dateTime: String;
+    timeZone: String;
+  };
 }

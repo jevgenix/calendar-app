@@ -4,7 +4,7 @@ import { useSession, signOut } from 'next-auth/react'
 
 const Navbar = () => {
   return (
-    <footer>
+    <header>
     <nav className={styles.nav}>
         <ul>
             <li className={styles.navItem}><a href="/">Profile</a></li>
@@ -13,7 +13,7 @@ const Navbar = () => {
         </ul>
         <button className={styles.navBtn} onClick={() => signOut()}>Sign out</button>
     </nav>
-    </footer>
+    </header>
   )
 }
 
