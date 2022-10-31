@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start-prod": "node app.js"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
+    "express": "^4.18.2",
     "googleapis": "^105.0.0",
     "next": "^13.0.0",
     "next-auth": "^4.14.0",

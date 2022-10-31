@@ -9,7 +9,7 @@ const LoginContainer = () => {
         <div className={styles.container}>
             {/* <button onClick={() => console.log("log in!")}>Log in</button> */}
             <Head>
-                <title>Login </title>
+                <title>Login</title>
             </Head>
 
             <SplashScreen />

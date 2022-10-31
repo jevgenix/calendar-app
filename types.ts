@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface GetSResults {
   Events: Schedule[];
 }
@@ -15,4 +17,9 @@ export interface Schedule {
     dateTime: String;
     timeZone: String;
   };
+}
+
+export interface Headerlink {
+  links: Array<String>
+  link: String
 }
