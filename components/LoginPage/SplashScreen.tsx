@@ -17,7 +17,7 @@ const SplashScreen = () => {
 
                 {/* <img src='/images/calendar.jpeg' /> */}
                 {/* <img src='/images/calendar.jpeg' /> */}
-                <Image src='/images/lazy.png' alt={''} />
+                <Image width={562} height={737} src='/images/lazy.png' alt={''} />
 
             </div>
         </div>
