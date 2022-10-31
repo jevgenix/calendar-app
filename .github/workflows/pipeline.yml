@@ -37,6 +37,24 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "next-calendar-app"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          healthcheck: "https://actions-pokedex-app.herokuapp.com/health"
+          healthcheck: "https://next-calendar-app.herokuapp.com//health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+
+      - name: Deployment Succeeded
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{success() && steps.deploy.conclusion == 'success' }}
+        with:
+          severity: info
+          text: A new version of Pokedex deployed to
+          description: https://next-calendar-app.herokuapp.com/ by ${{ github.actor }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
+      - name: Deployment Failed
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{failure() && steps.deploy.conclusion == 'failure' }}
+        with:
+          severity: error
+          text: Build failed
+          description: ${{ github.sha }} by ${{ github.actor }} broke the build :(
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
