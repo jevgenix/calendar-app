@@ -58,3 +58,15 @@ jobs:
           text: Build failed
           description: ${{ github.sha }} by ${{ github.actor }} broke the build :(
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
+  tag_release:
+    needs: deployment_pipeline
+    if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
