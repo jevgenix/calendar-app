@@ -37,7 +37,7 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "next-calendar-app"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          healthcheck: "https://next-calendar-app.herokuapp.com/health"
+          healthcheck: "https://next-calendar-app.herokuapp.com/api/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
 
