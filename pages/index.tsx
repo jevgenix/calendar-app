@@ -2,12 +2,15 @@ import type { NextPage } from 'next'
 import { useSession, signIn, getSession, GetSessionParams, signOut } from 'next-auth/react'
 import React, { useEffect, useState } from "react";
 import { Schedule, GetSResults } from "../types";
-import MainPageCard from '../components/MainPage/MainPageCard';
+import MainPageCard from '../components/MainPage/MainPageWeather';
 import styles from '../styles/Home.module.css'
 import Navbar from '../components/MainPage/NavBar/Navbar';
-import { Head } from 'next/document';
+import { Head, Main } from 'next/document';
+import MainPageAdvice from '../components/MainPage/MainPageAdvice';
+import MainPagePomo from '../components/MainPage/MainPagePomo';
 
 const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
+
     const { data: session, status } = useSession();
     const [dataG, setDataG] = useState(null);
     useEffect(() => {
@@ -27,18 +30,20 @@ const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
         console.log(dataG)
         return (
             <div>
+                
                 <Navbar />
-                <div className={styles.welcome}>
-                    <h1 className={styles.header}>
-                        Welcome to the home page, {session?.user?.name}!
-                    </h1>
-                </div>
+
                 <main className={styles.main}>
-                    <div className={styles.card}></div>
+
+                <div>
+
+                    <MainPagePomo />
                     <MainPageCard />
 
-                    <div className={styles.card}>
-                        <h1 className={styles.header}>Today&quot;s tasks</h1>
+                    </div>
+
+                    <div className={styles.schedule}>
+                        <h1 className={styles.header}>Schedule</h1>
                         {tasks.map((task) => {
                             return (
                                 <ul key={task.id}>
@@ -50,6 +55,7 @@ const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
                             );
                         })}
                     </div>
+
                 </main>
             </div>
         );

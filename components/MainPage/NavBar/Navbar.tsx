@@ -5,7 +5,7 @@ import { signOut } from 'next-auth/react'
 import NavbarLinks from './NavbarLinks'
 
 const Navbar = () => {
-  const links: Array<String> = ["Procfile", "Calendar", "Options"]
+  const links: Array<String> = ["Calendar"]
 
   return (
     <header>
