@@ -30,15 +30,16 @@ const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
         console.log(dataG)
         return (
             <div>
-                
+
                 <Navbar />
 
                 <main className={styles.main}>
 
-                <div>
+                    <div>
 
-                    <MainPagePomo />
-                    <MainPageCard />
+                        <MainPagePomo />
+
+                        <MainPageCard />
 
                     </div>
 

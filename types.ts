@@ -23,3 +23,12 @@ export interface Headerlink {
     links: Array<String>
     link: String
 }
+
+export interface Timer {
+    stage: number
+    switchStage: Function
+    getTickingTime: Function
+    seconds: number
+    ticking: boolean
+    setTicking: React.Dispatch<React.SetStateAction<boolean>>
+}
