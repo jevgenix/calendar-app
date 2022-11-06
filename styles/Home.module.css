@@ -98,6 +98,12 @@
   margin-top: 50px;
 }
 
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .schedule {
   background-color: white;
   min-width: 35%;
@@ -157,6 +163,7 @@
 .advP {
   font-size: large;
   font-weight: bold;
+  color: black
 }
 
 .card:hover,
@@ -189,10 +196,12 @@
     width: 100%;
     flex-direction: column-reverse;
   }
+
   .schedule {
     width: 100%;
     margin-left: 0;
   }
+
   .widget {
     margin-right: 0;
   }

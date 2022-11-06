@@ -36,10 +36,14 @@ const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
                 <main className={styles.main}>
 
                     <div>
+                        <div className={styles.flexCenter}>
+                            <MainPagePomo />
+                        </div>
 
-                        <MainPagePomo />
+                        <div className={styles.flexCenter}>
+                            <MainPageCard />
+                        </div>
 
-                        <MainPageCard />
 
                     </div>
 
