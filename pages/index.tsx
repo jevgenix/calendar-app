@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import { useSession, signIn, getSession, GetSessionParams, signOut } from 'next-auth/react'
 import React, { useEffect, useState } from "react";
 import { Schedule, GetSResults } from "../types";
-import MainPageCard from '../components/MainPage/MainPageWeather';
 import styles from '../styles/Home.module.css'
 import Navbar from '../components/MainPage/NavBar/Navbar';
 import { Head, Main } from 'next/document';

@@ -5,12 +5,11 @@ import PomodoroNavigation from './PomodoroNavigation';
 import styles from "../../../styles/Pomodoro.module.css";
 
 
-const Countdown = ({ stage, switchStage, getTickingTime, seconds, ticking, setTicking, openSettings, setOpenSettings }: Timer) => {
+const Countdown = ({ stage, switchStage, getTickingTime, seconds, ticking, setTicking, openSettings, setOpenSettings, wholeReset, triggerButton }: Timer) => {
     const options: Array<String> = ["Pomodoro", "Short Break", "Long Break"]
-
     return (
         <div className={styles.advP}>
-            <PomodoroNavigation setOpenSettings={setOpenSettings} />
+            <PomodoroNavigation setOpenSettings={setOpenSettings} ticking={ticking} triggerButton={triggerButton} wholeReset={wholeReset} />
 
             <div className={styles.bdvP}>
                 {options.map((options, index) => {
@@ -19,8 +18,6 @@ const Countdown = ({ stage, switchStage, getTickingTime, seconds, ticking, setTi
                         onClick={() => switchStage(index)}>{options}</h1>
                 }
                 )}
-
-
             </div>
 
             <div className={styles.controller}>

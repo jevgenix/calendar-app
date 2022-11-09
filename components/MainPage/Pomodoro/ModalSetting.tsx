@@ -4,7 +4,7 @@ import { FiX } from "react-icons/fi";
 import { Pomo } from '../../../types'
 
 
-const ModalSetting = ({ pomodoroRef, shortBreakRef, longBreakRef, openSettings, setOpenSettings, updateTimeDefaultValue }: Pomo) => {
+function ModalSetting({ pomodoroRef, shortBreakRef, longBreakRef, openSettings, setOpenSettings, updateTimeDefaultValue }: Pomo) {
     const inputs = [
         {
             value: "Pomodoro",
@@ -22,7 +22,6 @@ const ModalSetting = ({ pomodoroRef, shortBreakRef, longBreakRef, openSettings, 
             defaultValue: 10,
         },
     ];
-
     return (
         <>
             <div className={openSettings ? styles.modal : styles.hidden} onClick={() => setOpenSettings(false)}>
@@ -63,4 +62,4 @@ const ModalSetting = ({ pomodoroRef, shortBreakRef, longBreakRef, openSettings, 
 }
 
 
-export default ModalSetting
+export default React.memo(ModalSetting)

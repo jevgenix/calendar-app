@@ -185,3 +185,8 @@
 .hidden {
     visibility: hidden;
 }
+
+.info {
+    background-color: rgb(245, 147, 147);
+    border-radius: 0.25rem;
+}

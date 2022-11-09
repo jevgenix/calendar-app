@@ -34,6 +34,8 @@ export interface Timer {
     setTicking: React.Dispatch<React.SetStateAction<boolean>>
     openSettings: boolean
     setOpenSettings: React.Dispatch<React.SetStateAction<boolean>>
+    wholeReset: Function
+    triggerButton: boolean
 }
 
 // To be changed!
@@ -44,10 +46,14 @@ export interface Pomo {
     openSettings: boolean
     setOpenSettings: React.Dispatch<React.SetStateAction<boolean>>
     updateTimeDefaultValue: Function
+
 }
 
 export interface PomoNavigation {
     setOpenSettings: React.Dispatch<React.SetStateAction<boolean>>
+    ticking: boolean
+    wholeReset: Function
+    triggerButton: boolean
 }
 
 export interface Weather {

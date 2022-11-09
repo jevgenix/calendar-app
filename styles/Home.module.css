@@ -5,7 +5,7 @@
 }
 
 .main {
-  min-height: 93vh;
+  height: 94.5vh;
   flex: 1;
   display: flex;
   justify-content: right;
@@ -167,8 +167,7 @@
 }
 
 .navBtn:hover,
-.weatherBtn:hover
- {
+.weatherBtn:hover {
   cursor: pointer;
 }
 
