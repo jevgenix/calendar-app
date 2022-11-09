@@ -1,17 +1,18 @@
-import React, { useState } from 'react'
-import { FiCommand, FiSettings } from "react-icons/fi"
+
+
 import { Timer } from '../../../types'
+import PomodoroNavigation from './PomodoroNavigation';
 import styles from "../../../styles/Pomodoro.module.css";
-const Countdown = ({ stage, switchStage, getTickingTime, seconds, ticking, setTicking }: Timer) => {
+
+
+const Countdown = ({ stage, switchStage, getTickingTime, seconds, ticking, setTicking, openSettings, setOpenSettings }: Timer) => {
     const options: Array<String> = ["Pomodoro", "Short Break", "Long Break"]
 
     return (
         <div className={styles.advP}>
+            <PomodoroNavigation setOpenSettings={setOpenSettings} />
 
             <div className={styles.bdvP}>
-                <FiCommand />
-                <FiSettings />
-
                 {options.map((options, index) => {
                     return <h1 key={index}
                         className={` ${index == stage ? styles.stageItem : styles.item} `}
@@ -30,6 +31,7 @@ const Countdown = ({ stage, switchStage, getTickingTime, seconds, ticking, setTi
             <button className={styles.counterButton} onClick={() => setTicking(ticking => !ticking)}>
                 {ticking ? "Stop" : "Start"}
             </button>
+
 
         </div>
     )

@@ -1,3 +1,4 @@
+import { number } from "prop-types";
 import React from "react";
 
 export interface GetSResults {
@@ -31,4 +32,20 @@ export interface Timer {
     seconds: number
     ticking: boolean
     setTicking: React.Dispatch<React.SetStateAction<boolean>>
+    openSettings: boolean
+    setOpenSettings: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+// To be changed!
+export interface Pomo {
+    pomodoroRef: React.MutableRefObject<HTMLInputElement>
+    shortBreakRef: React.MutableRefObject<HTMLInputElement>
+    longBreakRef: React.MutableRefObject<HTMLInputElement>
+    openSettings: boolean
+    setOpenSettings: React.Dispatch<React.SetStateAction<boolean>>
+    updateTimeDefaultValue: Function
+}
+
+export interface PomoNavigation {
+    setOpenSettings: React.Dispatch<React.SetStateAction<boolean>>
 }

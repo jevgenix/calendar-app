@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Countdown from "./Pomodoro/Countdown";
+import ModalSetting from './Pomodoro/ModalSetting';
 import styles from "../../styles/Home.module.css";
 
 const MainPagePomo = () => {
@@ -10,6 +11,19 @@ const MainPagePomo = () => {
   const [stage, setStage] = useState(0)
   const [ticking, setTicking] = useState(false)
   const [consumedSecond, setConsumedSecond] = useState(0)
+  const [openSettings, setOpenSettings] = useState(false)
+
+  // need to change this types
+  const pomodoroRef = useRef<any>()
+  const shortBreakRef = useRef<any>()
+  const longBreakRef = useRef<any>()
+
+  const updateTimeDefaultValue = () => {
+    setPomodoro(pomodoroRef.current?.value)
+    setShortBreak(shortBreakRef.current?.value)
+    setLongBreak(longBreakRef.current?.value)
+    setOpenSettings(false)
+  }
 
   const switchStage = (index: number) => {
     const isYes = consumedSecond && stage !== index
@@ -83,8 +97,10 @@ const MainPagePomo = () => {
 
   return (
     <div className={styles.widget}>
-      <Countdown stage={stage} switchStage={switchStage} getTickingTime={getTickingTime} seconds={seconds} ticking={ticking} setTicking={setTicking} />
+      <Countdown stage={stage} switchStage={switchStage} getTickingTime={getTickingTime} seconds={seconds} ticking={ticking} setTicking={setTicking} openSettings={openSettings} setOpenSettings={setOpenSettings} />
+      <ModalSetting openSettings={openSettings} setOpenSettings={setOpenSettings} pomodoroRef={pomodoroRef} shortBreakRef={shortBreakRef} longBreakRef={longBreakRef} updateTimeDefaultValue={updateTimeDefaultValue} />
     </div>
+
   );
 };
 
