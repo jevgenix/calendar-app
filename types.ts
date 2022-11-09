@@ -32,3 +32,23 @@ export interface Timer {
     ticking: boolean
     setTicking: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export interface Weather {
+    main: {
+    temp: number;
+    humidity: number,
+    },
+    name: String,
+    weather: {
+        0: {
+            main: string;
+        }
+    },
+    wind: {
+        speed: string;
+    }
+  };
+
+  export interface getWeather {
+    wEvents: Weather[];
+  }

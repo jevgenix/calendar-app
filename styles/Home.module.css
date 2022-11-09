@@ -156,7 +156,19 @@
   border-color: black;
 }
 
-.navBtn:hover {
+.weatherBtn {
+  font-size: large;
+  font-weight: bold;
+  background-color: lightgray;
+  border-radius: 10px;
+  border-color: black;
+  padding: 10px;
+  margin-top: 15%;
+}
+
+.navBtn:hover,
+.weatherBtn:hover
+ {
   cursor: pointer;
 }
 
