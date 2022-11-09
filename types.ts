@@ -49,3 +49,23 @@ export interface Pomo {
 export interface PomoNavigation {
     setOpenSettings: React.Dispatch<React.SetStateAction<boolean>>
 }
+
+export interface Weather {
+    main: {
+        temp: number;
+        humidity: number,
+    },
+    name: String,
+    weather: {
+        0: {
+            main: string;
+        }
+    },
+    wind: {
+        speed: string;
+    }
+};
+
+export interface getWeather {
+    wEvents: Weather[];
+}

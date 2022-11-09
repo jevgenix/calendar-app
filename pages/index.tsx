@@ -8,6 +8,7 @@ import Navbar from '../components/MainPage/NavBar/Navbar';
 import { Head, Main } from 'next/document';
 import MainPageAdvice from '../components/MainPage/MainPageAdvice';
 import MainPagePomo from '../components/MainPage/MainPagePomo';
+import MainPageWeather from '../components/MainPage/MainPageWeather';
 
 const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
 
@@ -37,7 +38,7 @@ const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
                             <MainPagePomo />
                         </div>
                         <div className={styles.flexCenter}>
-                            <MainPageCard />
+                            <MainPageWeather />
                         </div>
 
 
