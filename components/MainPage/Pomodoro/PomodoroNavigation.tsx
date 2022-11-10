@@ -3,7 +3,7 @@ import { FiCommand, FiSettings } from "react-icons/fi"
 import styles from "../../../styles/Pomodoro.module.css";
 import { PomoNavigation } from "../../../types";
 
-const PomodoroNavigation = ({ setOpenSettings, wholeReset, triggerButton }: PomoNavigation) => {
+function PomodoroNavigation({ setOpenSettings, wholeReset, triggerButton }: PomoNavigation) {
     return (
         <nav className={styles.pomoNav}>
             <div className={styles.leftIcon}>
@@ -18,4 +18,4 @@ const PomodoroNavigation = ({ setOpenSettings, wholeReset, triggerButton }: Pomo
 }
 
 
-export default PomodoroNavigation
+export default React.memo(PomodoroNavigation)

@@ -27,7 +27,7 @@ const Home: NextPage<{ tasks: Schedule[] }> = ({ tasks }) => {
         <link rel="icon" href="/favicon.ico" />
     </Head>
     if (status === 'authenticated') {
-        console.log(dataG)
+        // console.log(dataG)
         return (
             <div>
                 <Navbar />
