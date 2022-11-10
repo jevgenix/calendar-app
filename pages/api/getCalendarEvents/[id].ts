@@ -3,6 +3,7 @@ import { google } from 'googleapis'
 import { getSession } from 'next-auth/react'
 
 const sendData = async (req: NextApiRequest, res: NextApiResponse,) => {
+    let id = req.query.id as string
     const session = await getSession({ req })
     const oauth2Client = new google.auth.OAuth2(
         process.env.GOOGLE_CLIENT_ID,
@@ -15,8 +16,9 @@ const sendData = async (req: NextApiRequest, res: NextApiResponse,) => {
         access_token: session.accessToken,
     })
     const calendar = google.calendar({ version: 'v3', auth: oauth2Client, })
+    //appcalendat2022@gmail.com
     const resData = await calendar.events.list({
-        calendarId: 'appcalendat2022@gmail.com',
+        calendarId: id,
         //timeMin: new Date().toISOString(),
         //maxResults: 10,
         //singleEvents: true,
