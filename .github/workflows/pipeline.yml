@@ -46,7 +46,7 @@ jobs:
         if: ${{success() && steps.deploy.conclusion == 'success' }}
         with:
           severity: info
-          text: A new version of Pokedex deployed to
+          text: A new version of Calendar-app deployed to
           description: https://next-calendar-app.herokuapp.com/ by ${{ github.actor }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
