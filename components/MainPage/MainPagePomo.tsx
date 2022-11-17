@@ -6,7 +6,7 @@ import styles from "../../styles/Home.module.css";
 const MainPagePomo = () => {
   const [pomodoro, setPomodoro] = useState(25)
   const [shortBreak, setShortBreak] = useState(5)
-  const [longBreak, setLongBreak] = useState(15)
+  const [longBreak, setLongBreak] = useState(10)
   const [seconds, setSeconds] = useState(0)
   const [stage, setStage] = useState(0)
   const [ticking, setTicking] = useState(false)

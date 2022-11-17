@@ -1,40 +1,25 @@
 import React, { useCallback, useMemo } from "react";
-import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
-import { Weather } from "../../types";
-import Image from "next/image";
-import imageLoader from "../../imageLoader";
-
-// Tässä on vielä bugi:
-// Jostain syystä funktio ei toimi täysin oikein
-// Vaikka geolokaatio on tiedossa, se silti palauttaa default valueen
-// Mutta jos uudelleen renderöidään (eli tehdään muutokset koodissa), niin kaikki toimii.
-// Update => Nyt funktio toimii silloin tällöin, käytin ennen useEffect, vaihdoin useMemo
-// syy => funktio toimii renderöinnin alussa ja mikäli on success palauttaa OK. konsoliin
-// useMemo toimii niin, että se muistaa arvot alussa
-// Safari toimii täydellisesti
-// Muut selaimet myös
-// useMemo is unstable.
+import WeatherData from "./WeatherData/WeatherData";
 
 function MainPageWeather() {
   const Key = process.env.NEXT_PUBLIC_WEATHER_KEY;
-  const [data, setData] = useState<Weather>();
+
   const [useLat, setLat] = useState<number>();
   const [useLon, setLon] = useState<number>();
 
-  useMemo(() => {
+  useEffect(() => {
     function isSuccess(pos: any) {
       console.log("OK.");
       var crd = pos.coords;
       setLat(crd?.latitude);
       setLon(crd?.longitude);
-      getData();
     }
 
     const isError = (err: any) => {
-      console.log("Error?");
+      setLat(60)
+      setLon(25)
       console.warn(`ERROR(${err.code}): ${err.message}`);
-      return getData();
     };
 
     var options = {
@@ -49,42 +34,13 @@ function MainPageWeather() {
       options
     );
 
-    const getData = async (lat = useLat || 60, lon = useLon || 25) => {
-      let addr = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${Key}&units=metric`;
-      console.log(addr);
-      const data = await (await fetch(addr)).json();
-      setData(data);
-    };
-  }, [setLat, useLat, setLon, useLon, setData, Key]);
-
-  console.log(data);
+  }, [setLat, useLat, setLon, useLon, Key]);
 
   return (
-    <div className={styles.widget}>
-      <h1>
-        Weather in {data?.name}
-        <span>
-          <Image
-            loader={imageLoader}
-            unoptimized
-            src={`http://openweathermap.org/img/wn/${data?.weather[0].icon}@2x.png`}
-            width="50"
-            height="50"
-            alt="weather icon"
-            className={styles.wImg}
-          />
-        </span>
-      </h1>
-      <div>
-        <p className={styles.advP}>Temperature: {data?.main.temp}°C</p>
-        <p className={styles.advP}>
-          Weather: {data?.weather[0].main} ({data?.weather[0].description})
-        </p>
-        <p className={styles.advP}>Wind speed: {data?.wind.speed} m/s</p>
-        <p className={styles.advP}>Humidity: {data?.main.humidity} %</p>
-      </div>
-    </div>
+    < WeatherData useLat={useLat} useLon={useLon} Key={Key} />
   );
+
+
 }
 
 export default React.memo(MainPageWeather);

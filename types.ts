@@ -7,20 +7,20 @@ export interface Calendar {
 }
 
 export interface Event {
-    kind:      string;
-    etag:      string;
-    id:        string;
-    status:    string;
-    htmlLink:  string;
-    created:   Date;
-    updated:   Date;
-    summary:   string;
-    creator:   Creator;
+    kind: string;
+    etag: string;
+    id: string;
+    status: string;
+    htmlLink: string;
+    created: Date;
+    updated: Date;
+    summary: string;
+    creator: Creator;
     organizer: Organizer;
-    start:     End;
-    end:       End;
-    iCalUID:   string;
-    sequence:  number;
+    start: End;
+    end: End;
+    iCalUID: string;
+    sequence: number;
     reminders: Reminders;
     eventType: string;
 }
@@ -35,9 +35,9 @@ export interface End {
 }
 
 export interface Organizer {
-    email:       string;
+    email: string;
     displayName: string;
-    self:        boolean;
+    self: boolean;
 }
 
 export interface Reminders {
@@ -83,8 +83,8 @@ export interface PomoNavigation {
 
 export interface Weather {
     main: {
-    temp: number,
-    humidity: number,
+        temp: number,
+        humidity: number,
     },
     name: String,
     weather: {
@@ -97,29 +97,31 @@ export interface Weather {
     wind: {
         speed: string,
     }
-  };
+};
 
-export interface getWeather {
-    wEvents: Weather[];
+export interface getWeatherWidget {
+    useLat: number | undefined
+    useLon: number | undefined
+    Key: string | undefined
 }
 
 //Testi interface
 export interface GetSResults {
-        Events: Schedule[];
-    }
-    
-    //Testi interface
-    export interface Schedule {
-        id: String;
-        summary: String;
-        description: String;
-        start: {
-            date: String;
-            dateTime: String;
-            timeZone: String;
-        };
-        end: {
-            dateTime: String;
-            timeZone: String;
-        };
-    }
+    Events: Schedule[];
+}
+
+//Testi interface
+export interface Schedule {
+    id: String;
+    summary: String;
+    description: String;
+    start: {
+        date: String;
+        dateTime: String;
+        timeZone: String;
+    };
+    end: {
+        dateTime: String;
+        timeZone: String;
+    };
+}
