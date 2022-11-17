@@ -2,8 +2,8 @@ import React, { useCallback, useMemo } from "react";
 import styles from "../../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { Weather } from "../../types";
-
-
+import Image from "next/image";
+import imageLoader from "../../imageLoader";
 
 // Tässä on vielä bugi:
 // Jostain syystä funktio ei toimi täysin oikein
@@ -22,61 +22,69 @@ function MainPageWeather() {
   const [useLat, setLat] = useState<number>();
   const [useLon, setLon] = useState<number>();
 
-
-
   useMemo(() => {
     function isSuccess(pos: any) {
-      console.log("OK.")
+      console.log("OK.");
       var crd = pos.coords;
-      setLat(crd?.latitude)
-      setLon(crd?.longitude)
-      getData()
+      setLat(crd?.latitude);
+      setLon(crd?.longitude);
+      getData();
     }
 
     const isError = (err: any) => {
-      console.log("Error?")
+      console.log("Error?");
       console.warn(`ERROR(${err.code}): ${err.message}`);
-      return getData()
-    }
+      return getData();
+    };
 
     var options = {
       enableHighAccuracy: false,
       timeout: 5000,
       maximumAge: 10,
-    }
+    };
 
-    global.navigator?.geolocation.getCurrentPosition(isSuccess, isError, options)
+    global.navigator?.geolocation.getCurrentPosition(
+      isSuccess,
+      isError,
+      options
+    );
 
     const getData = async (lat = useLat || 60, lon = useLon || 25) => {
-      let addr = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${Key}&units=metric`
-      console.log(addr)
-      const data = await (
-        await fetch(addr)
-      ).json()
+      let addr = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${Key}&units=metric`;
+      console.log(addr);
+      const data = await (await fetch(addr)).json();
       setData(data);
     };
-  }, [setLat, useLat, setLon, useLon, setData, Key])
+  }, [setLat, useLat, setLon, useLon, setData, Key]);
 
-
-
-  console.log(data)
+  console.log(data);
 
   return (
-
     <div className={styles.widget}>
-      <h1>Weather in {data?.name}</h1>
+      <h1>
+        Weather in {data?.name}
+        <span>
+          <Image
+            loader={imageLoader}
+            unoptimized
+            src={`http://openweathermap.org/img/wn/${data?.weather[0].icon}@2x.png`}
+            width="50"
+            height="50"
+            alt="weather icon"
+            className={styles.wImg}
+          />
+        </span>
+      </h1>
       <div>
         <p className={styles.advP}>Temperature: {data?.main.temp}°C</p>
-        <p className={styles.advP}>Weather: {data?.weather?.[0]?.main}</p>
+        <p className={styles.advP}>
+          Weather: {data?.weather[0].main} ({data?.weather[0].description})
+        </p>
         <p className={styles.advP}>Wind speed: {data?.wind.speed} m/s</p>
         <p className={styles.advP}>Humidity: {data?.main.humidity} %</p>
       </div>
     </div>
-
-
   );
-
-};
+}
 
 export default React.memo(MainPageWeather);
-
