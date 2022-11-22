@@ -12,6 +12,26 @@
   background-color: #284E47;
 }
 
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-color: white;
+  margin-top: 20%;
+}
+
+.calSelect {
+  width: 130px;
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+  font-size: large;
+  background-color: lightgray;
+  border-color: black;
+  border-width: 2px;
+}
+
 .welcome {
   padding-top: 1%;
   flex: 1;
@@ -111,7 +131,7 @@
 
 .scList {
   background-color: lightgrey;
-  border-style: groove;
+  border-style:groove;
   border-color: grey;
   margin-right: 5%;
   margin-left: 5%;
@@ -171,9 +191,12 @@
 }
 
 .wImg {
-  background-color: #284E47;
+  background-color: lightgray;
   margin-left: 10px;
   border-radius: 25px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
 }
 
 .navBtn:hover,
@@ -249,5 +272,10 @@
 
   .logo img {
     filter: invert(1);
+  }
+
+  .navBtn {
+    background-color: lightgray;
+    color: black;
   }
 }
