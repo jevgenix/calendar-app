@@ -22,7 +22,7 @@
 }
 
 .calSelect {
-  width: 130px;
+  min-width: 160px;
   height: 40px;
   font-weight: bold;
   text-align: center;

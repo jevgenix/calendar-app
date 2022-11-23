@@ -23,6 +23,7 @@ export interface Event {
     sequence: number;
     reminders: Reminders;
     eventType: string;
+    description: string;
 }
 
 export interface Creator {
@@ -31,6 +32,7 @@ export interface Creator {
 
 export interface End {
     dateTime: Date;
+    date: Date;
     timeZone: string;
 }
 

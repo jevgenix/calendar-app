@@ -22,6 +22,7 @@ const Home: NextPage = () => {
   const [dataG, setDataG] = useState<Calendar>();
   const [dataStatus, setStatus] = useState<boolean>(false);
   const [CalId, setCalId] = useState<string>();
+  const [calType, setCalType] = useState<string>("primary");
 
   useEffect(() => {
     const fData = async () => {
@@ -32,6 +33,8 @@ const Home: NextPage = () => {
           "/api/getCalendarEvents/appcalendat2022@gmail.com"
         );
         const events = await response.json();
+        console.log(events);
+        setCalType("primary");
         setDataG(events);
         setStatus(true);
       } else if (CalId === "secondary") {
@@ -39,31 +42,37 @@ const Home: NextPage = () => {
           "/api/getCalendarEvents/c7b9cbd0651ff8e00fe3f367826385d6ad7277fa8469667196f250f1e10b246a@group.calendar.google.com"
         );
         const events = await response.json();
+        console.log(events);
+        setCalType("primary");
         setDataG(events);
         setStatus(true);
-        //Ei toimi
       } else if (CalId === "third") {
         const response = await fetch(
-          "/api/getCalendarEvents/addressbook#contacts@group.v.calendar.google.com"
+          "/api/getCalendarEvents/addressbook%23contacts@group.v.calendar.google.com"
         );
         const events = await response.json();
+        console.log(events);
+        setCalType("secondary");
         setDataG(events);
         setStatus(true);
-        //Ei toimi
       } else if (CalId === "fourth") {
         const response = await fetch(
-          "/api/getCalendarEvents/fi.finnish#holiday@group.v.calendar.google.com"
+          "/api/getCalendarEvents/fi.finnish%23holiday@group.v.calendar.google.com"
         );
         const events = await response.json();
+        console.log(events);
+        setCalType("secondary");
         setDataG(events);
         setStatus(true);
+        //defaulttina hakee primary ID:llä kalenterin
       } else {
         const response = await fetch("/api/getCalendarEvents/primary");
         const events = await response.json();
+        console.log(events);
+        setCalType("primary");
         setDataG(events);
         setStatus(true);
       }
-
       // const res = await fetch("/api/getCalendarsList");
       // const calendarsList = await res.json();
 
@@ -71,7 +80,7 @@ const Home: NextPage = () => {
     };
 
     void fData();
-  }, [CalId, setCalId]);
+  }, [CalId, setCalId, calType, setCalType]);
 
   <Head>
     <Head>Home page</Head>
@@ -105,23 +114,40 @@ const Home: NextPage = () => {
             >
               <option value="primary">Primary</option>
               <option value="secondary">Secondary</option>
-              <option value="third">Third</option>
-              <option value="fourth">Fourth</option>
+              <option value="third">Address book</option>
+              <option value="fourth">Public holidays</option>
             </select>
 
+            {/* Kalenterin mäppäys */}
             {dataG?.events.map((a) => {
-              return (
-                <ul key={a.id} className={styles.scList}>
-                  <li className={styles.task}>{a.summary}</li>
-                  <li className={styles.task}>
-                    Start:{" "}
-                    {moment(a.start.dateTime).format("HH:mm (DD-MM-YYYY)")}
-                  </li>
-                  <li className={styles.task}>
-                    End: {moment(a.end.dateTime).format("HH:mm (DD-MM-YYYY)")}
-                  </li>
-                </ul>
-              );
+              if (calType === "primary") {
+                //Omien kalenterien muoto
+                return (
+                  <ul key={a.id} className={styles.scList}>
+                    <li className={styles.task}>{a.summary}</li>
+                    <li className={styles.task}>
+                      Start:{" "}
+                      {moment(a.start.dateTime).format("HH:mm (DD-MM-YYYY)")}
+                    </li>
+                    <li className={styles.task}>
+                      End: {moment(a.end.dateTime).format("HH:mm (DD-MM-YYYY)")}
+                    </li>
+                  </ul>
+                );
+              } else {
+                //Julkisten kalenterien muoto
+                return (
+                  <ul key={a.id} className={styles.scList}>
+                    <li className={styles.task}>{a.summary}</li>
+                    <li className={styles.task}>
+                      Start: {moment(a.start.date).format("DD-MM-YYYY")}
+                    </li>
+                    <li className={styles.task}>
+                      End: {moment(a.end.date).format("DD-MM-YYYY")}
+                    </li>
+                  </ul>
+                );
+              }
             })}
           </div>
         </main>
