@@ -1,7 +1,15 @@
 import { number } from "prop-types";
 import React from "react";
 
-//Kalenterin interface
+export interface Calendars {
+    calendars: CalendarFromList[];
+}
+export interface CalendarFromList {
+    description: string,
+    id: string,
+    summary: string,
+    timeZone: string
+}
 export interface Calendar {
     events: Event[];
 }
@@ -23,7 +31,11 @@ export interface Event {
     sequence: number;
     reminders: Reminders;
     eventType: string;
-    description: string;
+}
+
+export interface Headerlink {
+    links: Array<String>
+    link: String
 }
 
 export interface Creator {
@@ -31,8 +43,8 @@ export interface Creator {
 }
 
 export interface End {
-    dateTime: Date;
-    date: Date;
+    dateTime: Date
+    date?: Date;
     timeZone: string;
 }
 
