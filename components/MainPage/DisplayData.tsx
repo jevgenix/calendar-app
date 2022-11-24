@@ -24,8 +24,9 @@ const DisplayData = ({ calendarId }: any) => {
             try {
                 const getCalendarData = await fetch(`/api/getCalendarEvents/${id}`)
                 const jsonData = await getCalendarData.json()
-                const date = new Date()
-                setCurrentDate(date.toDateString())
+                const date = new Date().toJSON().slice(0, 10)
+                console.log(jsonData)
+                setCurrentDate(date)
                 setCalendarEvents(jsonData)
                 setLoadingStatus(true)
             } catch {
@@ -50,11 +51,9 @@ const DisplayData = ({ calendarId }: any) => {
         return (
             <div>
                 {sortedList.map((event) => {
-                    const start = new Date(event.start.dateTime || event.start.date)
-                    const end = new Date(event.end.dateTime || event.end.date)
-                    const startDate = start.toDateString()
-                    const endDate = end.toDateString()
-                    if (currentDate >= startDate && currentDate <= endDate) {
+                    const start = new Date(event.start.dateTime || event.start.date).toJSON().slice(0, 10)
+                    //const end = new Date(event.end.dateTime || event.end.date).toJSON().slice(0, 10)
+                    if (currentDate === start) {
                         return (
                             <ul key={event.id} className={styles.scList}>
                                 <li className={styles.task}>{event.summary}</li>
