@@ -1,4 +1,4 @@
-import Image from 'next/image'
+// import Image from 'next/image'
 import styles from '../../styles/Login.module.css'
 
 const SplashScreen = () => {
@@ -17,7 +17,10 @@ const SplashScreen = () => {
 
                 {/* <img src='/images/calendar.jpeg' /> */}
                 {/* <img src='/images/calendar.jpeg' /> */}
-                <Image width={562} height={737} src='/images/lazy.png' alt={''} />
+
+                <img src='/images/lazy.png' className={styles.resp} alt={''} />
+
+                {/* <Image width={562} height={737} className={styles.resp} src='/images/lazy.png' alt={''} /> */}
 
             </div>
         </div>

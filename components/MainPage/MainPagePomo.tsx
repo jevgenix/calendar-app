@@ -96,7 +96,6 @@ const MainPagePomo = () => {
     const minutes = getTickingTime()
     const setMinutes = updateMinute()
 
-    // HMMMM
     setTriggerButton(true)
 
     if (minutes == 0 && seconds == 0) {
